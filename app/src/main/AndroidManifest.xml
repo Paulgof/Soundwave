@@ -18,12 +18,28 @@
         </activity>
         <activity
             android:name=".OnlineMod"
-            android:label="@string/first_title"
-            android:theme="@style/OnlineTheme"/>
+            android:label="@string/online_mod_title"
+            android:theme="@style/OnlineTheme"
+            android:parentActivityName=".StartPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StartPage" />
+        </activity>
         <activity
             android:name=".OfflineMod"
-            android:label="@string/second_title"
-            android:theme="@style/OfflineTheme"/>
+            android:label="@string/offline_mod_title"
+            android:theme="@style/OfflineTheme"
+            android:parentActivityName=".StartPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StartPage" />
+        </activity>
     </application>
+
+    <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:required="true"
+    android:name="android.permission.INTERNET"/>
 
 </manifest>

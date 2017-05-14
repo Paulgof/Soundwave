@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.ListViewCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/off_line"
+        android:layout_weight="3100">
+
+    </android.support.v7.widget.ListViewCompat>
+
+    <include layout="@layout/audio_control"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/audio_control"
+             android:visibility="gone"
+             android:layout_weight="1"/>
+
+</LinearLayout>

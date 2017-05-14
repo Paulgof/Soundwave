@@ -27,7 +27,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:id="@+id/in_online_button"
-            android:text="@string/first_title"
+            android:text="@string/online_mod_title"
             android:padding="15dp"
             android:layout_gravity="center"/>
 
@@ -35,7 +35,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:id="@+id/in_offline_button"
-            android:text="@string/second_title"
+            android:text="@string/offline_mod_title"
             android:padding="15dp"
             android:layout_gravity="center"/>
 
