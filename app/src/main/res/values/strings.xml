@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Soundwave</string>
+    <string name="first_title">Online</string>
+    <string name="second_title">Offline</string>
+    <string name="choose_title">Select the mod</string>
+    <string name="online_mod_title">ONLINE MOD</string>
+    <string name="offline_mod_title">OFFLINE MOD</string>
+</resources>
