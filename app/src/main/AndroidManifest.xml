@@ -6,6 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true">
         <activity android:name=".StartPage"
          android:label="@string/app_name"
@@ -17,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".OnlineMod"
+            android:name=".OnlineMode"
             android:label="@string/online_mod_title"
             android:theme="@style/OnlineTheme"
             android:parentActivityName=".StartPage">
@@ -26,7 +27,7 @@
                 android:value=".StartPage" />
         </activity>
         <activity
-            android:name=".OfflineMod"
+            android:name=".OfflineMode"
             android:label="@string/offline_mod_title"
             android:theme="@style/OfflineTheme"
             android:parentActivityName=".StartPage">

@@ -3,4 +3,5 @@
     <string name="online_mod_title">Online</string>
     <string name="offline_mod_title">Offline</string>
     <string name="choose_title">Select the mode</string>
+    <string name="connect_title">Connect</string>
 </resources>

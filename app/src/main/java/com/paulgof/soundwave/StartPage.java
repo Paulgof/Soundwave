@@ -1,8 +1,6 @@
 package com.paulgof.soundwave;
 
 
-import android.*;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -27,7 +25,7 @@ public class StartPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkPermission();
-                Intent intent = new Intent(StartPage.this, OnlineMod.class);
+                Intent intent = new Intent(StartPage.this, OnlineMode.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +34,7 @@ public class StartPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkPermission();
-                Intent intent = new Intent(StartPage.this, OfflineMod.class);
+                Intent intent = new Intent(StartPage.this, OfflineMode.class);
                 startActivity(intent);
             }
         });

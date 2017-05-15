@@ -1,6 +1,6 @@
 package com.paulgof.soundwave.controller;
 
-import com.paulgof.soundwave.OfflineMod;
+import com.paulgof.soundwave.OfflineMode;
 import com.paulgof.soundwave.model.Audio;
 import com.paulgof.soundwave.model.AudioPlayer;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class AudioController { // core transaction
 
-    OfflineMod mOfflineMod;
+    OfflineMode mOfflineMode;
 
     AudioPlayer mAudioPlayer = new AudioPlayer(this);
 
@@ -20,9 +20,9 @@ public class AudioController { // core transaction
     private static int sPosition = -1;
     private static boolean sStatus;
 
-    public AudioController(OfflineMod offlineMod) {
-        mOfflineMod = offlineMod;
-        setAudioList(offlineMod.audioList);
+    public AudioController(OfflineMode offlineMode) {
+        mOfflineMode = offlineMode;
+        setAudioList(offlineMode.audioList);
     }
 
     public void changeAudioList(ArrayList<Audio> arrayList) {
@@ -47,12 +47,12 @@ public class AudioController { // core transaction
     public void changeStatus(boolean status) {
         setStatus(status);
         mAudioPlayer.audioSwitch();
-        mOfflineMod.changeStatus();
+        mOfflineMode.changeStatus();
     }
 
     private void setPosition(int position) {
         sPosition = position;
-        mOfflineMod.changePosition();
+        mOfflineMode.changePosition();
     }
 
     private void setStatus(boolean status) {

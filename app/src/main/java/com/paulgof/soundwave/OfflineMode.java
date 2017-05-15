@@ -1,10 +1,7 @@
 package com.paulgof.soundwave;
 
-import android.Manifest;
 import android.content.ContentResolver;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -29,7 +26,7 @@ import java.util.ArrayList;
   Created by Paulgof on 5/13/2017.
  */
 
-public class OfflineMod extends AppCompatActivity {
+public class OfflineMode extends AppCompatActivity {
 
      public ArrayList<Audio> audioList;
     AudioDistributor audioDistributor;
@@ -65,7 +62,7 @@ public class OfflineMod extends AppCompatActivity {
         if (audioList.size() > 0) {
 
             AudioAdapter audioAdapter = new AudioAdapter(this, audioList);
-            ListView listView = (ListView) findViewById(R.id.off_line);
+            ListView listView = (ListView) findViewById(R.id.off_list);
             listView.setAdapter(audioAdapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
