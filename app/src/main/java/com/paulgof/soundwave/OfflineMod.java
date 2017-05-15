@@ -2,6 +2,7 @@ package com.paulgof.soundwave;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,9 +47,9 @@ public class OfflineMod extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.offline_mode);
-        checkPermission();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         contentResolver = getContentResolver();
@@ -58,15 +59,6 @@ public class OfflineMod extends AppCompatActivity {
 
         intoAudioList();
         intoControlView();
-    }
-
-    private void checkPermission() { // get permission from device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-            }
-        }
     }
 
     private void intoAudioList() {
