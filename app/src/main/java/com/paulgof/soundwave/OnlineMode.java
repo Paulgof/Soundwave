@@ -1,6 +1,7 @@
 package com.paulgof.soundwave;
 
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.nsd.NsdServiceInfo;
@@ -10,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.paulgof.soundwave.controller.AudioAdapter;
@@ -45,18 +48,25 @@ public class OnlineMode extends AppCompatActivity {
     AudioDistributor audioDistributor;
     ContentResolver contentResolver;
 
-    Button connectButton;
+    public Button connectButton;
 
     //Commands
-    public String connectCom = "/!Connecting!/";
-    public String existCom = "/!Exist!/";
-    public String notExistCom = "/!notExist!/";
-    public String readyCom = "/!readyCom!/";
-    public String audioStartCom = "/!Start!/";
-    public String audioStopCom = "/!Stop!/";
+    public final String connectCom = "/!Connecting!/";
+    public final String existCom = "/!Exist!/";
+    public final String notExistCom = "/!notExist!/";
+    public final String readyCom = "/!readyCom!/";
+    public final String audioStartCom = "/!Start!/";
+    public final String audioStopCom = "/!Stop!/";
 
-    int flagPosition = -1;
-    boolean flagPlayed = false;
+    public int flagPosition = -1;
+    public boolean flagPlayed = false;
+
+    public View audioControl;
+    public TextView firstName;
+    public TextView secondName;
+    public Button mainPlay;
+    public Button postPlay;
+    public Button prePlay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +107,8 @@ public class OnlineMode extends AppCompatActivity {
         });
 
         mClientController = new ClientController(this);
+
+        makeControlView();
     }
 
     private void intoAudioList() {
@@ -169,6 +181,7 @@ public class OnlineMode extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         nsdHelper.tearDown();
+        mClientController.killMP();
         try {
             audioStream.tearDown();
         } catch (Exception e) {}
@@ -178,5 +191,51 @@ public class OnlineMode extends AppCompatActivity {
     public void makeToast(String msg) {
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    public void makeControlView() {
+        audioControl = findViewById(R.id.audio_control);
+        firstName = (TextView) findViewById(R.id.firstName);
+        secondName = (TextView) findViewById(R.id.secondName);
+        firstName.setSelected(true);
+        mainPlay = (Button) findViewById(R.id.mainButton);
+        mainPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!flagPlayed){
+                    mainPlay.setBackgroundResource(R.drawable.pause);
+                    flagPlayed = true;
+                    audioStream.sendMessage(audioStartCom);
+                } else {
+                    mainPlay.setBackgroundResource(R.drawable.play_button);
+                    flagPlayed = false;
+                    audioStream.sendMessage(audioStopCom);
+                }
+            }
+        });
+        postPlay = (Button) findViewById(R.id.postButton);
+        postPlay.setVisibility(View.GONE);
+        prePlay = (Button) findViewById(R.id.preButton);
+        prePlay.setVisibility(View.GONE);
+    }
+
+    public void notExistReaction(String title) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(OnlineMode.this);
+        builder.setTitle("Аудио отсутсвует!")
+                .setMessage("Упс, на одном из устройств отсутсвует " +
+                        title + ". Пожалуйста, выберете другое аудио или передайте " +
+                        "отсутсвуещее аудио на устройство.")
+                .setCancelable(false)
+                .setNegativeButton("ОК",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

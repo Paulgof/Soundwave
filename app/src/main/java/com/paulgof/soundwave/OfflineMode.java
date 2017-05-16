@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.paulgof.soundwave.controller.AudioAdapter;
@@ -39,6 +40,8 @@ public class OfflineMode extends AppCompatActivity {
     Button prePlay;
     Button mainPlay;
     Button postPlay;
+
+    public ProgressBar mProgressBar;
 
     int flagPosition = -1;
 
@@ -98,6 +101,7 @@ public class OfflineMode extends AppCompatActivity {
 
     public void intoControlView() {
         audioControl = findViewById(R.id.audio_control);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         firstName = (TextView) findViewById(R.id.firstName);
         secondName = (TextView) findViewById(R.id.secondName);
         firstName.setSelected(true);

@@ -20,6 +20,8 @@ public class AudioController { // core transaction
     private static int sPosition = -1;
     private static boolean sStatus;
 
+    
+
     public AudioController(OfflineMode offlineMode) {
         mOfflineMode = offlineMode;
         setAudioList(offlineMode.audioList);
@@ -27,7 +29,6 @@ public class AudioController { // core transaction
 
     public void changeAudioList(ArrayList<Audio> arrayList) {
         setAudioList(arrayList);
-
     }
 
     public void changePosition(int position) {
@@ -54,6 +55,7 @@ public class AudioController { // core transaction
         sPosition = position;
         mOfflineMode.changePosition();
     }
+
 
     private void setStatus(boolean status) {
         sStatus = status;

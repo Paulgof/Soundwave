@@ -22,4 +22,11 @@
         android:layout_weight="1"
         />
 
+    <include layout="@layout/audio_control"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/audio_control"
+             android:visibility="gone"
+             android:layout_weight="1"/>
+
 </LinearLayout>

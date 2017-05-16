@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class AudioPlayer {
 
-    MediaPlayer mMediaPlayer;
+    public MediaPlayer mMediaPlayer;
 
     AudioController mAudioController;
 

@@ -2,10 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.paulgof.soundwave">
 
+    <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                     android:required="true"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+                     android:required="true"/>
+    <uses-permission android:required="true"
+                     android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity android:name=".StartPage"
@@ -37,10 +44,6 @@
         </activity>
     </application>
 
-    <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:required="true"
-    android:name="android.permission.INTERNET"/>
+
 
 </manifest>
