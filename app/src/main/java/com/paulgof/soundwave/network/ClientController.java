@@ -71,14 +71,17 @@ public class ClientController {
             mOnlineMode.mainPlay.setBackgroundResource(R.drawable.play_button);
 
         } else {
+            theTitle = message;
             isExistTrans = false;
             isReady = false;
             killMP();
+            mOnlineMode.flagPlayed = true;
+            mOnlineMode.mainPlay.setBackgroundResource(R.drawable.pause);
             mOnlineMode.audioControl.setVisibility(View.GONE);
             for (int i = 0; i < mOnlineMode.audioList.size(); i++) {
                 if (mOnlineMode.audioList.get(i).getTitle().equals(message)) {
                     isExist = true;
-                    theTitle = mOnlineMode.audioList.get(i).getTitle();
+                    //theTitle = mOnlineMode.audioList.get(i).getTitle();
                     position = i;
                     break;
                 }

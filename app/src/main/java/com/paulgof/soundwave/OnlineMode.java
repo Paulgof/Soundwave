@@ -156,10 +156,7 @@ public class OnlineMode extends AppCompatActivity {
     }
 
     public void addChatLine(String line) { //
-        Toast toast = Toast.makeText(getApplicationContext(), "at: " + line, Toast.LENGTH_SHORT);
-        toast.show();
         mClientController.sendString(line);
-
     }
 
     @Override

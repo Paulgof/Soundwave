@@ -20,6 +20,8 @@
         android:text="@string/connect_title"
         android:id="@+id/connect_button"
         android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/mainLight"
         />
 
     <include layout="@layout/audio_control"

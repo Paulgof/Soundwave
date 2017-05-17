@@ -101,8 +101,8 @@ public class AudioStream {
         }
 
         public void tearDown() {
-            mThread.interrupt();
             try {
+                mThread.interrupt();
                 mServerSocket.close();
             } catch (IOException ioe) {}
         }
