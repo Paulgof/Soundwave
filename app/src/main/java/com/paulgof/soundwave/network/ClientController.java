@@ -1,9 +1,11 @@
 package com.paulgof.soundwave.network;
 
+import android.os.Handler;
 import android.view.View;
 
 import com.paulgof.soundwave.OnlineMode;
 import com.paulgof.soundwave.R;
+import com.paulgof.soundwave.controller.Utilities;
 import com.paulgof.soundwave.model.AudioPlayerOnline;
 
 /**
@@ -25,8 +27,12 @@ public class ClientController {
 
     public String theTitle;
 
+    private Handler mHandler = new Handler();
+    private Utilities utils;
+
     public ClientController(OnlineMode onlineMode) {
         mOnlineMode = onlineMode;
+        utils = new Utilities();
     }
 
 
@@ -54,6 +60,7 @@ public class ClientController {
 
             if (isReady) {
                 mPlayerOnline.startAudio();
+                updateProgressBar();
             } else {
                 isReady = true;
             }
@@ -94,6 +101,30 @@ public class ClientController {
             }
         }
     }
+
+    public void updateProgressBar() {
+        mHandler.postDelayed(mUpdateTimeTask, 100);
+    }
+
+    private Runnable mUpdateTimeTask = new Runnable() { //TODO
+        public void run() {
+            long totalDuration = mPlayerOnline.mMediaPlayer.getDuration();
+            long currentDuration = mPlayerOnline.mMediaPlayer.getCurrentPosition();
+
+            // Displaying Total Duration time
+            //songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+            // Displaying time completed playing
+            //songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+
+            // Updating progress bar
+            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            mOnlineMode.mProgressBar.setProgress(progress);
+
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 100);
+        }
+    };
 
     public void killMP() {
         mPlayerOnline.releaseMP();

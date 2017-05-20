@@ -1,5 +1,7 @@
 package com.paulgof.soundwave.controller;
 
+import android.os.Handler;
+
 import com.paulgof.soundwave.OfflineMode;
 import com.paulgof.soundwave.model.Audio;
 import com.paulgof.soundwave.model.AudioPlayer;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 
 public class AudioController { // core transaction
 
-    OfflineMode mOfflineMode;
+    public OfflineMode mOfflineMode;
 
     AudioPlayer mAudioPlayer = new AudioPlayer(this);
 
@@ -20,11 +22,14 @@ public class AudioController { // core transaction
     private static int sPosition = -1;
     private static boolean sStatus;
 
+    private Handler mHandler = new Handler();
+    private Utilities utils;
     
 
     public AudioController(OfflineMode offlineMode) {
         mOfflineMode = offlineMode;
         setAudioList(offlineMode.audioList);
+        utils = new Utilities();
     }
 
     public void changeAudioList(ArrayList<Audio> arrayList) {
@@ -41,6 +46,7 @@ public class AudioController { // core transaction
         } else  {
             setPosition(position);
             mAudioPlayer.playAudio();
+            updateProgressBar();
             changeStatus(true);
         }
     }
@@ -80,4 +86,28 @@ public class AudioController { // core transaction
     public void stopper() {
         mAudioPlayer.releaseMP();
     }
+
+    public void updateProgressBar() {
+        mHandler.postDelayed(mUpdateTimeTask, 100);
+    }
+
+    private Runnable mUpdateTimeTask = new Runnable() { //TODO
+        public void run() {
+            long totalDuration = mAudioPlayer.mMediaPlayer.getDuration();
+            long currentDuration = mAudioPlayer.mMediaPlayer.getCurrentPosition();
+
+            // Displaying Total Duration time
+            //songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+            // Displaying time completed playing
+            //songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+
+            // Updating progress bar
+            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            mOfflineMode.mProgressBar.setProgress(progress);
+
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 100);
+        }
+    };
 }

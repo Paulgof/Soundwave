@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AudioPlayerOnline {
 
-    MediaPlayer mMediaPlayer;
+    public MediaPlayer mMediaPlayer;
 
     public void prepareAudio(ArrayList<Audio> audios, int position) {
         try {

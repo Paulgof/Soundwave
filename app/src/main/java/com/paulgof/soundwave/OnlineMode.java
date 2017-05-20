@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class OnlineMode extends AppCompatActivity {
     public Button mainPlay;
     public Button postPlay;
     public Button prePlay;
+    public ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -215,6 +217,7 @@ public class OnlineMode extends AppCompatActivity {
         postPlay.setVisibility(View.GONE);
         prePlay = (Button) findViewById(R.id.preButton);
         prePlay.setVisibility(View.GONE);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public void notExistReaction(String title) {
