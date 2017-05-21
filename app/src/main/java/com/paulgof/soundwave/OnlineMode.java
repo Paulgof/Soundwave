@@ -69,6 +69,8 @@ public class OnlineMode extends AppCompatActivity {
     public Button postPlay;
     public Button prePlay;
     public ProgressBar mProgressBar;
+    public TextView currentTime;
+    public TextView totalTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -218,6 +220,8 @@ public class OnlineMode extends AppCompatActivity {
         prePlay = (Button) findViewById(R.id.preButton);
         prePlay.setVisibility(View.GONE);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        currentTime = (TextView) findViewById(R.id.currentTime);
+        totalTime = (TextView) findViewById(R.id.totalTime);
     }
 
     public void notExistReaction(String title) {

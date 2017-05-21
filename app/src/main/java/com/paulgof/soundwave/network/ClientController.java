@@ -44,6 +44,8 @@ public class ClientController {
 
             if (isExistTrans) {
                 mPlayerOnline.prepareAudio(mOnlineMode.audioList, position);
+                mPlayerOnline.startAudio();
+                mPlayerOnline.pauseAudio();//for better synchronization
                 mOnlineMode.audioControl.setVisibility(View.VISIBLE);
                 mOnlineMode.firstName.setText(mOnlineMode.audioList.get(position).getTitle());
                 mOnlineMode.secondName.setText(mOnlineMode.audioList.get(position).getArtist());
@@ -81,6 +83,7 @@ public class ClientController {
             theTitle = message;
             isExistTrans = false;
             isReady = false;
+            mHandler.removeCallbacks(mUpdateTimeTask);
             killMP();
             mOnlineMode.flagPlayed = true;
             mOnlineMode.mainPlay.setBackgroundResource(R.drawable.pause);
@@ -110,23 +113,21 @@ public class ClientController {
         public void run() {
             long totalDuration = mPlayerOnline.mMediaPlayer.getDuration();
             long currentDuration = mPlayerOnline.mMediaPlayer.getCurrentPosition();
-
-            // Displaying Total Duration time
-            //songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
-            // Displaying time completed playing
-            //songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
-
             // Updating progress bar
             int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             mOnlineMode.mProgressBar.setProgress(progress);
-
+            // Displaying Total Duration time
+            mOnlineMode.totalTime.setText("" + utils.milliSecondsToTimer(totalDuration));
+            // Displaying time completed playing
+            mOnlineMode.currentTime.setText("" + utils.milliSecondsToTimer(currentDuration));
             // Running this thread after 100 milliseconds
             mHandler.postDelayed(this, 100);
         }
     };
 
     public void killMP() {
+        mHandler.removeCallbacks(mUpdateTimeTask);
         mPlayerOnline.releaseMP();
     }
 

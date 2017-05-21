@@ -84,6 +84,7 @@ public class AudioController { // core transaction
     }
 
     public void stopper() {
+        mHandler.removeCallbacks(mUpdateTimeTask);
         mAudioPlayer.releaseMP();
     }
 
@@ -97,9 +98,9 @@ public class AudioController { // core transaction
             long currentDuration = mAudioPlayer.mMediaPlayer.getCurrentPosition();
 
             // Displaying Total Duration time
-            //songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+            mOfflineMode.totalTime.setText("" + utils.milliSecondsToTimer(totalDuration));
             // Displaying time completed playing
-            //songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+            mOfflineMode.currentTime.setText("" + utils.milliSecondsToTimer(currentDuration));
 
             // Updating progress bar
             int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));

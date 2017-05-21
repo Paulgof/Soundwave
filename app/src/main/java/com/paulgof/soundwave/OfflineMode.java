@@ -37,6 +37,8 @@ public class OfflineMode extends AppCompatActivity {
     View audioControl;
     TextView firstName;
     TextView secondName;
+    public TextView currentTime;
+    public TextView totalTime;
     Button prePlay;
     Button mainPlay;
     Button postPlay;
@@ -131,6 +133,8 @@ public class OfflineMode extends AppCompatActivity {
                 audioController.changePosition(audioController.getPosition()+1);
             }
         });
+        currentTime = (TextView) findViewById(R.id.currentTime);
+        totalTime = (TextView) findViewById(R.id.totalTime);
 
     }
 

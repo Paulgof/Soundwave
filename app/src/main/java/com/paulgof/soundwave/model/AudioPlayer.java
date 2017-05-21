@@ -47,28 +47,6 @@ public class AudioPlayer {
     public void audioSwitch() {
         if (mAudioController.isStatus()) {
             mMediaPlayer.start();
-
-            /*mAudioController.mOfflineMode.mProgressBar.setMax(mMediaPlayer.getDuration());
-            new AsyncTask<Void, Integer, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                    while(mMediaPlayer.isPlaying())
-                    {
-                        publishProgress(mMediaPlayer.getCurrentPosition());
-                    }
-                    return null;
-                }
-                protected void onProgressUpdate(Integer... progress) {
-                    mAudioController.mOfflineMode.mProgressBar.setProgress(progress[0]);
-                }
-                @Override
-                protected void onPostExecute(Void result) {
-                    super.onPostExecute(result);
-                    mMediaPlayer.stop();
-                    mMediaPlayer.release();
-                }
-            }.execute();*/
-
         } else {
             mMediaPlayer.pause();
         }

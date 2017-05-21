@@ -4,4 +4,5 @@
     <string name="offline_mod_title">Offline</string>
     <string name="choose_title">Select the mode</string>
     <string name="connect_title">Connect</string>
+    <string name="hh_mm_ss">HH:MM:SS</string>
 </resources>

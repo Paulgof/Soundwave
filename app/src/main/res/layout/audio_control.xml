@@ -8,14 +8,46 @@
     android:background="@color/colorPrimaryDark"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        android:indeterminate="false"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hh_mm_ss"
+            android:textColor="@color/mainLight"
+            android:layout_weight="1"
+            android:id="@+id/currentTime"
+            android:textSize="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="1dp"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:indeterminate="false"
+            android:layout_weight="1000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hh_mm_ss"
+            android:textColor="@color/mainLight"
+            android:layout_weight="1"
+            android:id="@+id/totalTime"
+            android:textSize="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="1dp"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
